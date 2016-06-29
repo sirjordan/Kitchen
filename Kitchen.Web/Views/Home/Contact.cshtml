@@ -1,17 +1,42 @@
-﻿@{
-    ViewBag.Title = "Contact";
+﻿@using Kitchen.Web.Infrastructure;
+@{
+    ViewBag.Title = "Контакти";
+    string mail = Configuration.EmailAddress;
+    string phone = Configuration.Phone;
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
 <address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
+    Младост 3<br />
+    Блок 365 А<br />
+    <abbr title="Phone">Тел:</abbr>
+    @Configuration.Phone
 </address>
 
 <address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+    <strong>Email: </strong><a href="mailto:@mail">@mail</a><br />
 </address>
+
+<div id="contacts-map"></div>
+
+<!-- FUCK YOU GOOGLE -->
+<script>
+    function initMap() {
+        var kitchenLatLng = { lat: 42.639405, lng: 23.385408 };
+        var mapDiv = document.getElementById('contacts-map');
+        var map = new google.maps.Map(mapDiv, {
+            center: kitchenLatLng,
+            zoom: 18
+        });
+        var marker = new google.maps.Marker({
+            position: kitchenLatLng,
+            map: map,
+            title: 'Ресторант Кухня'
+        });
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGPjCZiGi0WcJ3dUg1bUNZ4YQy3cEGyb0&callback=initMap">
+</script>
