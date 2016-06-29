@@ -93,13 +93,32 @@ body {
 
 footer {
     font-size: small;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
     footer .copy {
         text-align: center;
     }
 
-#contacts-map {
-    min-height: 500px;
+.contacts-wrapper {
+    margin-top: 20px;
+    padding-left: 10px;
+    border-left: 2px solid lightgray;
+    height: 500px;
 }
+
+    .contacts-wrapper #contacts-map {
+        height: 500px;
+    }
+
+    .contacts-wrapper .contacts-info {
+        width: 250px;
+        display: inline-block;
+        line-height:30px;
+    }
+
+    .contacts-wrapper .map-wrapper {
+        width: 690px;
+        display: inline-block;
+        float: right;
+    }

@@ -4,22 +4,26 @@
     string mail = Configuration.EmailAddress;
     string phone = Configuration.Phone;
 }
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 <h3>@ViewBag.Message</h3>
 
-<address>
-    Младост 3<br />
-    Блок 365 А<br />
-    <abbr title="Phone">Тел:</abbr>
-    @Configuration.Phone
-</address>
+<div class="contacts-wrapper">
+    <aside class="contacts-info">
+        <address>
+            Младост 3<br />
+            Блок 365 А<br />
+            <abbr title="Phone">Тел:</abbr>
+            @Configuration.Phone
+        </address>
 
-<address>
-    <strong>Email: </strong><a href="mailto:@mail">@mail</a><br />
-</address>
-
-<div id="contacts-map"></div>
-
+        <address>
+            <strong>Email: </strong><a href="mailto:@mail">@mail</a><br />
+        </address>
+    </aside>
+    <aside class="map-wrapper">
+        <div id="contacts-map"></div>
+    </aside>
+</div>
 <!-- FUCK YOU GOOGLE -->
 <script>
     function initMap() {
@@ -27,7 +31,7 @@
         var mapDiv = document.getElementById('contacts-map');
         var map = new google.maps.Map(mapDiv, {
             center: kitchenLatLng,
-            zoom: 18
+            zoom: 17
         });
         var marker = new google.maps.Marker({
             position: kitchenLatLng,

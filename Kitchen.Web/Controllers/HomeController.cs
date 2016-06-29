@@ -22,7 +22,7 @@ namespace Kitchen.Web.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Заповядайте, за нас ще бъде удоволстие!";
 
             return View();
         }
