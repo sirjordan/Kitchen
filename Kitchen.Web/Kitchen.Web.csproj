@@ -129,6 +129,10 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\imgs\home.png" />
+    <Content Include="Content\imgs\logo.jpg" />
+    <Content Include="Content\imgs\pile-oriz.jpg" />
+    <Content Include="Content\imgs\shish.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -164,6 +168,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\imgs\front-slider\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

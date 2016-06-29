@@ -3,35 +3,49 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Кухня - Българска кухня</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <div id="wrapper">
+        <header>
+            <img src="~/Content/imgs/logo.jpg" alt="logo" id="logo">
+            <div class="headings">
+                <h1>
+                    Кухня - Българска кухня
+                </h1>
+                <h2>
+                    Българска кухня и още неща ;]
+                </h2>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            <nav>
+                <ul>
+                    <li>
+                        <img src="~/Content/imgs/home.png" alt="home" id="home-icon">
+                    </li>
+                    <li>
+                        Меню
+                    </li>
+                    <li>
+                        Галерия
+                    </li>
+                    <li>
+                        Заявки
+                    </li>
+                    <li>
+                        Резервации
+                    </li>
+                    <li>
+                        Намери ни
+                    </li>
                 </ul>
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
+            </nav>
+        </header>
+
         @RenderBody()
-        <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p class="copy">&copy; @DateTime.Now.Year - Кухня</p>
         </footer>
     </div>
 

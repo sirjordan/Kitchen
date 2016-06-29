@@ -1,24 +1,90 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿
+*{
+   margin:0;
+   padding:0;
+   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+ul li{
+    list-style-type: none;
+}
+body{
+   text-align:center; /*For IE6 Shenanigans*/
+   background-color: #eee;
+}
+ 
+#wrapper{
+   width:960px;
+   margin:0 auto;
+   text-align:left;
+   background-color: white;
+   color:#303030 ;
+}
+#wrapper header{
+    padding: 10px;
+}
+#wrapper header li{
+    border-bottom: 2px solid lightgray;
+    display: inline-block;
+    padding: 5px 5px 0;
+}
+#wrapper header li:hover{
+    border-bottom: 2px solid limegreen;
+    cursor: pointer;
+}
+#home-icon{
+    width: 24px;
+    height: 16px;
+}
+#logo{
+    width: 120px;
+    height: 120px;
+}
+.headings{
+    display: inline-block;
+    margin: 20px 0 0 20px;
+    vertical-align: top;
+}
+.content-section{
+    display: block;
+    padding-bottom: 10px;
+    text-align: center;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+.content-section .home-page-content .half{
+    display: inline-block;
+    width: 473px;
+    vertical-align: top;
+}
+.content-section article{
+    border: 3px solid #eee;
+    margin: 5px 0 0;
+    padding: 15px;
+    display: inline-block;
+    text-align: left;
+    vertical-align: top;
+}
+.content-section article img{
+    width: 120px;
+    height: 120px;
+    float: left;
+    border-radius: 60px;
+    margin-right: 10px;
+}
+.content-section article p{
+    display: inline-block;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+.front-slider > img {
+    height: 250px;
+    width: 100%;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+footer{
+    font-size: small;
+     margin-top: 10px;
 }
+
+footer .copy{
+    text-align:center;
+}
+
