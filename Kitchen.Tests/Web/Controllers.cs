@@ -27,7 +27,7 @@ namespace Kitchen.Tests
             NavController ctrl = new NavController();
             Mock<HttpContextBase> contextMoq = new Mock<HttpContextBase>();            
             contextMoq.Setup(c => c.Request.Url).Returns(new Uri("http://localhost/Contacts"));
-            ctrl.ControllerContext = new ControllerContext(contextMoq.Object, new RouteData(), ctrl);
+            ctrl.ControllerContext = new ControllerContext(contextMoq.Object, new RouteData(), ctrl); 
 
             PartialViewResult result = ctrl.Menu();
 
