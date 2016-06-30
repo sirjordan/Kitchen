@@ -64,28 +64,29 @@ body {
     vertical-align: top;
 }
 
-.content-section {
+.content-section, .menu-section {
     display: block;
     padding-bottom: 10px;
     text-align: center;
 }
 
-    .content-section .home-page-content .half {
+    .content-section .home-page-content .half, .menu-section .menu-page-content .half {
         display: inline-block;
         width: 473px;
         vertical-align: top;
     }
 
-    .content-section article {
-        border: 3px solid #eee;
+    .content-section article, .menu-section article {
+        border: 3px solid lightgray;
         margin: 5px 0 0;
         padding: 15px;
         display: inline-block;
         text-align: left;
         vertical-align: top;
+        width: 435px;
     }
 
-        .content-section article img {
+        .content-section article img, .menu-section article img {
             width: 120px;
             height: 120px;
             float: left;
@@ -93,8 +94,17 @@ body {
             margin-right: 10px;
         }
 
-        .content-section article p {
+        .content-section article p, .menu-section article p {
             display: inline-block;
+        }
+
+        .menu-section article .menu-price {
+            text-align: right;
+        }
+
+        .menu-section article h4 {
+            margin-bottom: 5px;
+            text-align: center;
         }
 
 .front-slider > img {
