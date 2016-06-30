@@ -12,12 +12,18 @@ namespace Kitchen.Web.Controllers
         public PartialViewResult Menu()
         {
             // What menu item is selected
-            string[] requestFragments = Request.Url.AbsolutePath.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
             string invoker = null;
-            if (requestFragments.Count() > 0)
+            try
             {
-                invoker = requestFragments[0].Trim();
+                string[] requestFragments = Request.Url.AbsolutePath.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+
+                if (requestFragments.Count() > 0)
+                {
+                    invoker = requestFragments[0].Trim();
+                }
             }
+            catch (Exception){ /* Invoker stays Null */ }
+           
             
             List<NavViewModel> navigationItems = new List<NavViewModel>()
             {
