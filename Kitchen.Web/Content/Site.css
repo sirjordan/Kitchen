@@ -9,6 +9,14 @@ ul li {
     list-style-type: none;
 }
 
+a, a:visited, a:hover, h1, h2, h3, h4, h5, h6 {
+    color: #444;
+}
+
+a {
+    text-decoration: none;
+}
+
 body {
     text-align: center; /*For IE6 Shenanigans*/
     background-color: #eee;
@@ -26,14 +34,17 @@ body {
         padding: 10px;
     }
 
-        #wrapper header li {
+        #wrapper header .navigation li {
             border-bottom: 2px solid lightgray;
             display: inline-block;
             padding: 5px 5px 0;
         }
 
-            #wrapper header li:hover {
+            #wrapper header .navigation li:hover, #wrapper header .navigation li.selected {
                 border-bottom: 2px solid limegreen;
+            }
+
+            #wrapper header .navigation li:hover {
                 cursor: pointer;
             }
 
@@ -114,7 +125,7 @@ footer {
     .contacts-wrapper .contacts-info {
         width: 250px;
         display: inline-block;
-        line-height:30px;
+        line-height: 30px;
     }
 
     .contacts-wrapper .map-wrapper {

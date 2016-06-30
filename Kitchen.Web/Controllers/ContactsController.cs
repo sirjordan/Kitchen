@@ -6,8 +6,9 @@ using System.Web.Mvc;
 
 namespace Kitchen.Web.Controllers
 {
-    public class HomeController : Controller
+    public class ContactsController : Controller
     {
+        // GET: Contacts
         public ActionResult Index()
         {
             return View();
