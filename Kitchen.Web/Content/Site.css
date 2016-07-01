@@ -143,3 +143,19 @@ footer {
         display: inline-block;
         float: right;
     }
+
+.submit-order-form fieldset {
+    padding: 10px;
+    border: 1px solid #bbb;
+}
+
+.submit-order-form .submit-order > input {
+    color: green;
+    font-weight: bold;
+    padding: 3px;
+}
+
+    .submit-order-form .submit-order > input:hover {
+        color: limegreen;
+        cursor:pointer;
+    }

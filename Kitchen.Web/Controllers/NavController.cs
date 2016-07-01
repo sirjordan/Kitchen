@@ -29,7 +29,7 @@ namespace Kitchen.Web.Controllers
             {
                 new NavViewModel() { Text= "Меню", Controller = "Menu" },
                 new NavViewModel() { Text= "Галерия", Controller = "Gallery" },
-                new NavViewModel() { Text= "Заявки", Controller = "Requests" },
+                new NavViewModel() { Text= "Заявки", Controller = "Orders", Action = "LunchRequest" },
                 new NavViewModel() { Text= "Резервации", Controller = "Reservations" },
                 new NavViewModel() { Text= "Намери ни", Controller = "Contacts" },
             };
