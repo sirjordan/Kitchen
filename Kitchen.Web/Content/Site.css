@@ -149,6 +149,33 @@ footer {
     border: 1px solid #bbb;
 }
 
+.submit-order-form .editor-field {
+    margin-bottom: 5px;
+}
+
+.submit-order-form .editor-label label {
+    font-size: 14px;
+}
+
+.submit-order-form .editor-field input, .submit-order-form .editor-field textarea {
+    background-color: #FFE7CA;
+    /* Valid: background-color: #d9ffad;*/
+    border: 1px solid lightgray;
+    font-size: 16px;
+    padding: 5px;
+    width: 200px;
+    border-radius: 2px;
+}
+
+    .submit-order-form .editor-field input:hover, .submit-order-form .editor-field textarea:hover {
+        background-color: wheat;
+    }
+
+.submit-order-form .field-validation-error {
+    color: firebrick;
+    font-size: 12px;
+}
+
 .submit-order-form .submit-order > input {
     color: green;
     font-weight: bold;
@@ -157,5 +184,5 @@ footer {
 
     .submit-order-form .submit-order > input:hover {
         color: limegreen;
-        cursor:pointer;
+        cursor: pointer;
     }

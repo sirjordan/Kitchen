@@ -7,7 +7,6 @@ using System.ComponentModel;
 
 namespace Kitchen.Web.Models
 {
-    // TODO: Regex for phone, Min/Max lenght for other props, Optional delivery time prop
     public class OrderViewModel
     {
         [Required(ErrorMessage = "Задължително поле")]
@@ -24,6 +23,7 @@ namespace Kitchen.Web.Models
         [StringLength(maximumLength: 500, ErrorMessage = "Максимална дължина 500 символа")]
         public string Address { get; set; }
         [DisplayName("Коментар")]
+        [DataType(DataType.MultilineText)]
         [StringLength(maximumLength: 500, ErrorMessage = "Максимална дължина 500 символа")]
         public string Comments { get; set; }
     }
