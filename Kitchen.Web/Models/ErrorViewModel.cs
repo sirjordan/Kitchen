@@ -1,6 +1,6 @@
 using System;
 
-namespace Kitchen.Models
+namespace Kitchen.Web.Models
 {
     public class ErrorViewModel
     {

@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Kitchen.Data
+namespace Kitchen.Web.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {

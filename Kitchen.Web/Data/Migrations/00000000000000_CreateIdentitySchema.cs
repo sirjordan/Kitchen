@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Kitchen.Data.Migrations
+namespace Kitchen.Web.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {

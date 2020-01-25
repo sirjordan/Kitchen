@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UserSecretsId>aspnet-Kitchen-B752529A-3180-4EED-B81D-26C0692C9BCD</UserSecretsId>
+    <UserSecretsId>aspnet-Kitchen.Web-B314ED89-73A9-4862-8938-C7EA23ADF646</UserSecretsId>
   </PropertyGroup>
 
 

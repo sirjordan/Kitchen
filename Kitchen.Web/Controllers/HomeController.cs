@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Kitchen.Models;
+using Kitchen.Web.Models;
 
-namespace Kitchen.Controllers
+namespace Kitchen.Web.Controllers
 {
     public class HomeController : Controller
     {
