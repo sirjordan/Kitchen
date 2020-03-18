@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Kitchen.Web.Data
@@ -12,5 +9,9 @@ namespace Kitchen.Web.Data
             : base(options)
         {
         }
+
+        public DbSet<Dish> Dishes { get; set; }
+
+        public DbSet<Category> Categories { get; set; }
     }
 }
