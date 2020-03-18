@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Kitchen.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Kitchen.Web.Models;
+using System.Diagnostics;
 
 namespace Kitchen.Web.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -20,7 +18,8 @@ namespace Kitchen.Web.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var items = new[] { "line 1", "line 2" };
+            return View(items);
         }
 
         public IActionResult Privacy()
