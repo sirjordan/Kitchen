@@ -8,10 +8,10 @@
 </div>
 
 <div>
-    @{ 
+    @{
         foreach (var dish in Model)
         {
-             await Html.RenderPartialAsync("_DishPartial", dish);
+            await Html.RenderPartialAsync("_DishPartial", dish);
         }
     }
 </div>
