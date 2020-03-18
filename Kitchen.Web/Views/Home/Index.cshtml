@@ -1,6 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
-    @model IEnumerable<string>;
+    @model IEnumerable<DishViewModel>;
 }
 
 <div class="text-center">
@@ -8,8 +8,10 @@
 </div>
 
 <div>
-    @foreach (var item in Model)
-    {
-        <p>@item</p>
+    @{ 
+        foreach (var dish in Model)
+        {
+             await Html.RenderPartialAsync("_DishPartial", dish);
+        }
     }
 </div>
