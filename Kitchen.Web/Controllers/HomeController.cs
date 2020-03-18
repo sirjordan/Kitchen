@@ -1,8 +1,11 @@
-﻿using Kitchen.Web.Models;
+﻿using Kitchen.Web.Data;
+using Kitchen.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Kitchen.Web.Controllers
 {
@@ -10,19 +13,26 @@ namespace Kitchen.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            var items = new DishViewModel[] 
-            { 
-                new DishViewModel { Name = "Пиле фрикасе", Category = "Основно", Price = 6.70, Description = "Изваждат се и в същия съд се запържват наситнените праз и чесън. Добавят се морковите и целината, нарязани на кубчета и също се запържват. Подреждат се бутчетата, похлупва се и се оставя да се готви на умерен огън 20–30 минути.Накрая се прибавя и размразеният грах, и щом стане готов, ястието се дърпа от огъня и се сервира с наситнен магданоз.", Allergens = "Мляко, Яйца" }
-            };
-            return View(items);
+            var dishes = _context.Dishes.Select(d => new DishViewModel 
+            {
+                Name = d.Name,
+                Description = d.Description,
+                Price = d.Price,
+                Allergens = d.Allergens,
+                Category = d.Category.Name
+            });
+
+            return View(dishes);
         }
 
         public IActionResult Privacy()

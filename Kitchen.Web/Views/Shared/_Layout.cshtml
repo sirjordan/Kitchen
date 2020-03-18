@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -25,7 +28,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Поверителност</a>
                         </li>
-                        @if (@ConfigurationManager.Settings.Develop)
+                        @if (SignInManager.IsSignedIn(User))
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" href="/admin/dashboard/index">Администратор</a>
@@ -45,9 +48,9 @@
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; @DateTime.Now.Year - Кухня - <a asp-area="" asp-controller="Home" asp-action="Privacy">Поверителност</a>
-            @if (@ConfigurationManager.Settings.Develop)
+            @if (ConfigurationManager.Settings.Develop)
             {
-                <strong> - [Develop - True]</strong>
+                <em class="float-right">&nbsp;[Develop - True]</em>
             }
         </div>
     </footer>
