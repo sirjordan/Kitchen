@@ -1,4 +1,5 @@
-﻿using Kitchen.Web.Data;
+﻿using AutoMapper;
+using Kitchen.Web.Data;
 using Kitchen.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Kitchen.Web.Controllers
 {
@@ -14,24 +16,30 @@ namespace Kitchen.Web.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context;
+        private readonly IMapper _mapper;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context, IMapper mapper)
         {
             _logger = logger;
             _context = context;
+            _mapper = mapper;
         }
 
         public IActionResult Index()
         {
-            var dishes = _context.Dishes.Select(d => new DishViewModel 
+            var mock = new Dish[]
             {
-                Name = d.Name,
-                Description = d.Description,
-                Price = d.Price,
-                Allergens = d.Allergens,
-                Category = d.Category.Name
-            });
-
+                new Dish
+                {
+                    Id = 5,
+                    Allergens = "no",
+                    //Category = new Category { Name = "Cat" },
+                    Price = 6,
+                    Description = "desc",
+                    Name = "Mock"
+                }
+            }.AsQueryable();
+            var dishes = _mapper.ProjectTo<DishViewModel>(mock).ToList();
             return View(dishes);
         }
 

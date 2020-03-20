@@ -11,7 +11,7 @@
     @{
         foreach (var dish in Model)
         {
-            await Html.RenderPartialAsync("_DishPartial", dish);
+            await Html.RenderPartialAsync("~/Views/Menu/_DishPartial.cshtml", dish);
         }
     }
 </div>

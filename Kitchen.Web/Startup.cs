@@ -1,4 +1,6 @@
+using AutoMapper;
 using Kitchen.Web.Data;
+using Kitchen.Web.Mappings;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +32,7 @@ namespace Kitchen.Web
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
             services.AddControllers(config =>
             {
                 var policy = new AuthorizationPolicyBuilder()
@@ -37,6 +40,15 @@ namespace Kitchen.Web
                                  .Build();
                 config.Filters.Add(new AuthorizeFilter(policy));
             });
+
+            // Auto Mapper Configurations
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
         }
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
