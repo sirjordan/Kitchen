@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Kitchen.Web.Controllers
@@ -25,21 +24,9 @@ namespace Kitchen.Web.Controllers
             _mapper = mapper;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var mock = new Dish[]
-            {
-                new Dish
-                {
-                    Id = 5,
-                    Allergens = "no",
-                    //Category = new Category { Name = "Cat" },
-                    Price = 6,
-                    Description = "desc",
-                    Name = "Mock"
-                }
-            }.AsQueryable();
-            var dishes = _mapper.ProjectTo<DishViewModel>(mock).ToList();
+            var dishes = await _mapper.ProjectTo<DishViewModel>(_context.Dishes).ToListAsync();
             return View(dishes);
         }
 

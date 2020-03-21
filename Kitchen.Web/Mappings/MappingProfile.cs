@@ -8,7 +8,7 @@ namespace Kitchen.Web.Mappings
     {
         public MappingProfile()
         {
-            CreateMap<Dish, DishViewModel>().ForAllMembers(opt => opt.Condition((source, dest, sourceMember, destMember) => (sourceMember != null)));
+            CreateMap<Dish, DishViewModel>().ForMember(src => src.CategoryName, opt => opt.MapFrom(dest => dest.Category != null ? dest.Category.Name : string.Empty));
         }
     }
 }
