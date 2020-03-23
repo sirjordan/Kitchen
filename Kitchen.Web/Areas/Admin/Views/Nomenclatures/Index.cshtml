@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Kitchen.Web.Data.Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<h2>Категории</h2>
+<p>
+    <a href="/admin/nomenclatures/categorycreate"><img src="~/imgs/add.png" class="add-new-item" width="20" height="20" />Нова категория</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a href="/admin/nomenclatures/categoryedit/@item.Id">Редактиране</a> |
+                    <a href="/admin/nomenclatures/categorydetails/@item.Id">Детайли</a> |
+                    <a href="/admin/nomenclatures/categorydelete/@item.Id">Изтрий</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

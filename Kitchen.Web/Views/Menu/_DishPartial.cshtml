@@ -9,10 +9,12 @@
         <p>@Model.Description</p>
         <div>
             <span>@Model.CategoryName</span>
-            <span>@Model.Weight</span>
+            <span>
+                @Model.Weight @Html.Raw(Model.Weight < 1000 ? "г." : "кг.")
+            </span>
         </div>
         <div>
-            <span>@Model.Price</span>
+            <span>@Model.Price лв.</span>
             <a href="#" class="float-right">Добави</a>
         </div>
     </div>
