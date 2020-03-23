@@ -2,12 +2,13 @@
 
 @{
     ViewData["Title"] = "Index";
+    await Html.RenderPartialAsync("_AdminMenuPartial");
 }
 
 <h1>Index</h1>
 
 <p>
-    <a href="/admin/menu/create">Create New</a>
+    <a href="/admin/menu/create"><img src="~/imgs/add.png" class="add-new-item" width="20" height="20" />Създай нов</a>
 </p>
 <table class="table">
     <thead>
@@ -44,9 +45,9 @@
                     @Html.DisplayFor(modelItem => item.Allergens)
                 </td>
                 <td>
-                    <a href="admin/menu/edit/@item.Id">Edit</a> |
-                    <a href="admin/menu/details/@item.Id">Details</a> |
-                    <a href="admin/menu/delete/@item.Id">Delete</a> 
+                    <a href="/admin/menu/edit/@item.Id">Редактиране</a> |
+                    <a href="/admin/menu/details/@item.Id">Детайли</a> |
+                    <a href="/admin/menu/delete/@item.Id">Изтрий</a> 
                 </td>
             </tr>
         }

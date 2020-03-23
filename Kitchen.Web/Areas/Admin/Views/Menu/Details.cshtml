@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Details";
+    await Html.RenderPartialAsync("_AdminMenuPartial");
 }
 
 <h1>Details</h1>
@@ -37,6 +38,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a href="/admin/menu/edit/@Model.Id">Редактиране</a> |
+    <a href="/admin/menu">Обратно в списъка</a>
 </div>

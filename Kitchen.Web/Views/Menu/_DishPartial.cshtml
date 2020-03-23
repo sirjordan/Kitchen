@@ -1,9 +1,19 @@
 ﻿@model DishViewModel
 
-<div>
-    <div>@Model.Name</div>
-    <div>@Model.CategoryName</div>
-    <div>@Model.Description</div>
-    <span>@Model.Allergens</span>
-    <span>@Model.Price</span>
+<div class="dish-thumb">
+    <div>
+        <img src="@Html.Raw(!string.IsNullOrWhiteSpace(Model.ImageUrl) ? Model.ImageUrl : Url.Content("~/imgs/no-image.jpg"))" alt="@Model.Name" class="img-fluid" />
+    </div>
+    <div>
+        <h4>@Model.Name</h4>
+        <p>@Model.Description</p>
+        <div>
+            <span>@Model.CategoryName</span>
+            <span>@Model.Weight</span>
+        </div>
+        <div>
+            <span>@Model.Price</span>
+            <a href="#" class="float-right">Добави</a>
+        </div>
+    </div>
 </div>
