@@ -10,9 +10,7 @@ namespace Kitchen.Web.Mappings
         {
             CreateMap<Dish, DishViewModel>()
                 .ForMember(src => src.CategoryName, opt => opt.MapFrom(dest => dest.Category != null ? dest.Category.Name : string.Empty))
-                .ForMember(src => src.CategoryId, opt => opt.MapFrom(dest => dest.Category != null ? dest.Category.Id : 0));
-
-
+                .ReverseMap();
         }
     }
 }

@@ -1,5 +1,9 @@
-﻿using Kitchen.Web.Data;
+﻿using AutoMapper;
+using Kitchen.Web.Areas.Admin.Models;
+using Kitchen.Web.Data;
+using Kitchen.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,15 +14,18 @@ namespace Kitchen.Web.Areas.Admin.Controllers
     public class MenuController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IMapper _mapper;
 
-        public MenuController(ApplicationDbContext context)
+        public MenuController(ApplicationDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Dishes.ToListAsync());
+            var dishes = await _mapper.ProjectTo<DishViewModel>(_context.Dishes).ToListAsync();
+            return View(nameof(Index), dishes);
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -38,19 +45,25 @@ namespace Kitchen.Web.Areas.Admin.Controllers
             return View(dish);
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var categories = await _context.Categories.Select(c => new SelectListItem()
+            {
+                Value = c.Id.ToString(),
+                Text = c.Name
+            }).ToListAsync();
+
+            return View(new MainMenuItemViewModel { Categories = categories });
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("Id,Name,Price,Description,Allergens")] Dish dish)
+        public async Task<IActionResult> Create([Bind("Id,Name,Price,Description,Allergens")] DishViewModel dish)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(dish);
+                _context.Add(_mapper.Map<Dish>(dish));
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return await Index();
             }
             return View(dish);
         }

@@ -44,7 +44,7 @@ namespace Kitchen.Web.Data.Migrations
                     b.Property<string>("Allergens")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -273,7 +273,9 @@ namespace Kitchen.Web.Data.Migrations
                 {
                     b.HasOne("Kitchen.Web.Data.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
