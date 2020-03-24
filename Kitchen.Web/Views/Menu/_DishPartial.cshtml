@@ -1,21 +1,20 @@
 ﻿@model DishViewModel
 
-<div class="dish-thumb">
-    <div>
+<div class="dish-thumb container">
+    <div class="row">
         <img src="@Html.Raw(!string.IsNullOrWhiteSpace(Model.ImageUrl) ? Model.ImageUrl : Url.Content("~/imgs/no-image.jpg"))" alt="@Model.Name" class="img-fluid" />
     </div>
-    <div>
-        <h4>@Model.Name</h4>
-        <p>@Model.Description</p>
-        <div>
-            <span>@Model.CategoryName</span>
-            <span>
-                @Model.Weight @Html.Raw(Model.Weight < 1000 ? "г." : "кг.")
-            </span>
-        </div>
-        <div>
-            <span>@Model.Price лв.</span>
+    <h4 class="row">@Model.Name</h4>
+    <p class="row">@Model.Description</p>
+    <div class="row">
+        <span class="col">
+            @Model.Weight @Html.Raw(Model.Weight < 1000 ? "г." : "кг.")
+        </span>
+        <span class="col">
+            @Model.Price лв.
+        </span>
+        <span class="col">
             <a href="#" class="float-right">Добави</a>
-        </div>
+        </span>
     </div>
 </div>
