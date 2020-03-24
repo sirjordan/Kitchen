@@ -1,11 +1,9 @@
 ﻿@model IEnumerable<DishViewModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Основно меню";
     await Html.RenderPartialAsync("_AdminMenuPartial");
 }
-
-<h1>Index</h1>
 
 <p>
     <a href="/admin/menu/create"><img src="~/imgs/add.png" class="add-new-item" width="20" height="20" />Създай нов</a>

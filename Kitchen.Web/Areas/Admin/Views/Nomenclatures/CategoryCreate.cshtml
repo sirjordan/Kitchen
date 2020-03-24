@@ -1,14 +1,10 @@
 ﻿@model Kitchen.Web.Data.Category
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Създаване на нова категория";
     await Html.RenderPartialAsync("_AdminMenuPartial");
 }
 
-<h1>Create</h1>
-
-<h4>Category</h4>
-<hr />
 <div class="row">
     <div class="col-md-4">
         <form action="/admin/nomenclatures/categorycreate" method="post">

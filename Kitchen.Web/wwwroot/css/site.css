@@ -53,6 +53,26 @@ button.accept-policy {
     line-height: inherit;
 }
 
+/* Index Page 
+-------------------------------------------------- */
+.like-us-on-fb {
+    display: inline-block;
+    height: 100%;
+}
+
+    .like-us-on-fb img {
+        vertical-align: bottom;
+        width: 25px;
+        height: 25px;
+        display: inline-block;
+        margin-top: 8px;
+    }
+
+.logo {
+    border-radius: 100px;
+}
+
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -98,4 +118,3 @@ body {
     .dish-thumb img {
         width: 300px;
     }
-

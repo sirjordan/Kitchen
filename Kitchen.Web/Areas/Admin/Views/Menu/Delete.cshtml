@@ -1,16 +1,12 @@
 ﻿@model Kitchen.Web.Data.Dish
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Изтриване на запис от основното меню";
     await Html.RenderPartialAsync("_AdminMenuPartial");
 }
 
-<h1>Delete</h1>
-
-<h3>Сигурни ли сте, че искате да изтриете "@Model.Name"?</h3>
+<h4>Сигурни ли сте, че искате да изтриете "@Model.Name"?</h4>
 <div>
-    <h4>Dish</h4>
-    <hr />
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Name)

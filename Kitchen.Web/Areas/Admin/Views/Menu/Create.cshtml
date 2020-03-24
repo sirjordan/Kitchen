@@ -1,14 +1,10 @@
 ﻿@model DishViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Създаване на нов запис от основното меню";
     await Html.RenderPartialAsync("_AdminMenuPartial");
 }
 
-<h1>Create</h1>
-
-<h4>Dish</h4>
-<hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post" action="/admin/menu/create">

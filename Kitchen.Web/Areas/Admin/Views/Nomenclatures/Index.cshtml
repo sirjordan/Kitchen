@@ -1,13 +1,11 @@
 ﻿@model IEnumerable<Kitchen.Web.Data.Category>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Номенклатури";
     await Html.RenderPartialAsync("_AdminMenuPartial");
 }
 
-<h1>Index</h1>
-
-<h2>Категории</h2>
+<h4>Категории</h4>
 <p>
     <a href="/admin/nomenclatures/categorycreate"><img src="~/imgs/add.png" class="add-new-item" width="20" height="20" />Нова категория</a>
 </p>
