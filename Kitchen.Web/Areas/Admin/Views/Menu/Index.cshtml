@@ -10,46 +10,57 @@
 <p>
     <a href="/admin/menu/create"><img src="~/imgs/add.png" class="add-new-item" width="20" height="20" />Създай нов</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Allergens)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+
+@foreach (var group in Model.GroupBy(m => m.CategoryName))
+{
+    <h4>@group.Key</h4>
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Allergens)
-                </td>
-                <td>
-                    <a href="/admin/menu/edit/@item.Id">Редактиране</a> |
-                    <a href="/admin/menu/details/@item.Id">Детайли</a> |
-                    <a href="/admin/menu/delete/@item.Id">Изтрий</a> 
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Weight)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Allergens)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in group)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Weight)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Allergens)
+                    </td>
+                    <td>
+                        <a href="/admin/menu/edit/@item.Id">Редактиране</a> |
+                        <a href="/admin/menu/details/@item.Id">Детайли</a> |
+                        <a href="/admin/menu/delete/@item.Id">Изтрий</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

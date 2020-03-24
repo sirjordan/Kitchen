@@ -38,7 +38,7 @@
         </dd>
     </dl>
     
-    <form  action="/admin/menu/delete?id=@Model.Id">
+    <form method="post"  action="/admin/menu/delete?id=@Model.Id">
         <input type="hidden" asp-for="Id" />
         <input type="submit" value="Изтрий" class="btn btn-danger" /> |
         <a href="/admin/menu">Обратно в списъка</a>

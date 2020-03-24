@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using Kitchen.Web.Areas.Admin.Models;
 using Kitchen.Web.Data;
 using Kitchen.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -47,13 +47,19 @@ namespace Kitchen.Web.Areas.Admin.Controllers
 
         public async Task<IActionResult> Create()
         {
-            var categories = await _context.Categories.Select(c => new SelectListItem()
+            var categories = await GetCategories();
+            ViewBag.Categories = categories;
+
+            return View();
+        }
+
+        private async Task<List<SelectListItem>> GetCategories()
+        {
+            return await _context.Categories.Select(c => new SelectListItem()
             {
                 Value = c.Id.ToString(),
                 Text = c.Name
             }).ToListAsync();
-
-            return View(new MainMenuItemViewModel { Categories = categories });
         }
 
         [HttpPost]
@@ -80,11 +86,16 @@ namespace Kitchen.Web.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            return View(dish);
+
+            var model = _mapper.Map<DishViewModel>(dish);
+            var categories = await GetCategories();
+            ViewBag.Categories = categories;
+
+            return View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,Description,Allergens")] Dish dish)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,Description,Allergens")] DishViewModel dish)
         {
             if (id != dish.Id)
             {
@@ -95,7 +106,7 @@ namespace Kitchen.Web.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(dish);
+                    _context.Update(_mapper.Map<Dish>(dish));
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -109,8 +120,10 @@ namespace Kitchen.Web.Areas.Admin.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+
+                return await Index();
             }
+
             return View(dish);
         }
 
@@ -137,7 +150,8 @@ namespace Kitchen.Web.Areas.Admin.Controllers
             var dish = await _context.Dishes.FindAsync(id);
             _context.Dishes.Remove(dish);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+
+            return await Index();
         }
 
         private bool DishExists(int id)
