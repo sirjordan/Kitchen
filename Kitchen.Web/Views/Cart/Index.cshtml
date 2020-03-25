@@ -1,0 +1,12 @@
+﻿@model CartViewModel;
+@{
+    ViewData["Title"] = "Kошница";
+}
+
+<h1>Kошница</h1>
+
+@foreach (var item in Model.ItemIds)
+{
+    <p>@item</p>
+}
+
