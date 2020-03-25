@@ -1,14 +1,20 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Kitchen.Web.Models
 {
     public class CartViewModel
     {
-        public List<int> ItemIds { get; set; }
+        public List<DishViewModel> Items { get; set; }
+
+        public double TotalPrice
+        {
+            get { return Items.Sum(i => i.Price); } 
+        }
 
         public CartViewModel()
         {
-            ItemIds = new List<int>();
+            Items = new List<DishViewModel>();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Kitchen.Web.Data;
+﻿using AutoMapper;
+using Kitchen.Web.Data;
 using Kitchen.Web.Models;
 using Kitchen.Web.Session;
 using Microsoft.AspNetCore.Authorization;
@@ -13,10 +14,12 @@ namespace Kitchen.Web.Controllers
     {
         private readonly string CART_SESSION_KEY = "card";
         private readonly ApplicationDbContext _context;
+        private readonly IMapper _mapper;
 
-        public CartController(ApplicationDbContext context)
+        public CartController(ApplicationDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public IActionResult Index()
@@ -35,7 +38,7 @@ namespace Kitchen.Web.Controllers
             }
 
             var cart = HttpContext.Session.Get<CartViewModel>(CART_SESSION_KEY) ?? new CartViewModel();
-            cart.ItemIds.Add(menuItem.Id);
+            cart.Items.Add(_mapper.Map<DishViewModel>(menuItem));
 
             HttpContext.Session.Set(CART_SESSION_KEY, cart);
 

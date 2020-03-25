@@ -5,8 +5,47 @@
 
 <h1>Kошница</h1>
 
-@foreach (var item in Model.ItemIds)
+@if (Model.Items.Count == 0)
 {
-    <p>@item</p>
+    <p>Нямате направени поръчки</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Items.First().Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Items.First().Price)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        <a href="#">Изтрий</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>Общо:</td>
+                <td>@Model.TotalPrice лв.</td>
+                <td></td>
+            </tr>
+        </tfoot>
+    </table>
 }
 
