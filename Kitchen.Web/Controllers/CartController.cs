@@ -14,7 +14,8 @@ namespace Kitchen.Web.Controllers
     [AllowAnonymous]
     public class CartController : Controller
     {
-        private readonly string CART_SESSION_KEY = "card";
+        private const string CART_SESSION_KEY = "cart";
+        private const string CART_COUNT_SESSION_KEY = "cart-items-count";
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
 
@@ -41,6 +42,7 @@ namespace Kitchen.Web.Controllers
             cart.Items.Add(_mapper.Map<DishViewModel>(menuItem));
 
             HttpContext.Session.Set(CART_SESSION_KEY, cart);
+            HttpContext.Session.Set(CART_COUNT_SESSION_KEY, cart.Items.Count);
 
             // TODO: Receive return url to redirect to
             return RedirectToAction("index", "home");
@@ -70,6 +72,7 @@ namespace Kitchen.Web.Controllers
             // TODO: Send email -> check https://www.mailjet.com
 
             HttpContext.Session.Remove(CART_SESSION_KEY);
+            HttpContext.Session.Set(CART_COUNT_SESSION_KEY, 0);
 
             return RedirectToAction("index", "home");
         }

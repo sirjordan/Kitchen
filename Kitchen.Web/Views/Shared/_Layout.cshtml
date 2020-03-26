@@ -1,6 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Http
+@using Kitchen.Web.Session;
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
+@inject IHttpContextAccessor HttpContextAccessor
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,9 +15,32 @@
 </head>
 <body>
     <header>
+        <div class="container">
+            <a asp-area="" asp-controller="Home" asp-action="Index">
+                <img src="~/imgs/kuhnya-logo.jpg" alt="Kunhya logo" width="50" height="50" class="logo img-fluid" />
+            </a>
+            <h1>Ресторант "Кухня"</h1>
+            <a title="Харесайте ни във Фейсбук" class="like-us-on-fb" href="https://www.facebook.com/restorantkuhnia">
+                <img src="~/imgs/f_logo_RGB-Blue_58.png" width="25" height="25" />
+            </a>
+            <div class="float-right">
+                <a asp-action="index" asp-controller="cart" title="Вашата потребителска кошница">
+                    <img src="~/imgs/icon_cart_green.png" width="25" height="25" alt="cart" />
+                </a>
+                @{
+                    // HACK: Get this from CartService
+                    var cartItemsCount = HttpContextAccessor.HttpContext.Session.Get<int>("cart-items-count");
+                    if (cartItemsCount > 0)
+                    {
+                        <span class="cart-items">
+                            @Html.Raw(cartItemsCount)
+                        </span>
+                    }
+                }
+            </div>
+        </div>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/imgs/kuhnya-logo.jpg" alt="Kunhya logo" width="50" height="50" class="logo" /></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -34,9 +60,6 @@
                                 <a class="nav-link text-dark" href="/admin/dashboard/index">Администратор</a>
                             </li>
                         }
-                        <li class="nav-item">
-                            <a title="Харесайте ни във Фейсбук" class="like-us-on-fb" href="https://www.facebook.com/restorantkuhnia"><img src="~/imgs/f_logo_RGB-Blue_58.png" width="25" height="25" /></a>
-                        </li>
                     </ul>
                 </div>
             </div>
