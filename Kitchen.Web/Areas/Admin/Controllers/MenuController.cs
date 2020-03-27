@@ -63,14 +63,19 @@ namespace Kitchen.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("Id,Name,Price,Description,Allergens")] DishViewModel dish)
+        public async Task<IActionResult> Create([Bind("Id,Name,CategoryId,Price,Description,Allergens,Weight")] DishViewModel dish)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(_mapper.Map<Dish>(dish));
+                var newItem = _mapper.Map<Dish>(dish);
+                newItem.Category = await _context.Categories.FindAsync(newItem.CategoryId);
+
+                _context.Add(newItem);
                 await _context.SaveChangesAsync();
+
                 return await Index();
             }
+
             return View(dish);
         }
 
