@@ -48,7 +48,18 @@ namespace Kitchen.Web.Controllers
             return RedirectToAction("index", "home");
         }
 
-        public async Task<IActionResult> Purchase()
+        public IActionResult Purchase()
+        {
+            var order = new OrderViewModel
+            {
+                Cart = GetCart()
+            };
+            
+            return View(order);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Purchase(OrderViewModel model)
         {
             var cart = GetCart();
             if (cart.Items.Count == 0)
@@ -60,10 +71,8 @@ namespace Kitchen.Web.Controllers
                 .Where(d => cart.Items.Select(c => c.Id).Contains(d.Id))
                 .ToList();
 
-            var order = new Order()
-            {
-                PurchasedAt = DateTime.Now,
-            };
+            var order = _mapper.Map<Order>(model);
+            order.PurchasedAt = DateTime.Now;
 
             foreach (var i in items)
             {
@@ -85,6 +94,12 @@ namespace Kitchen.Web.Controllers
             return RedirectToAction("index", "home");
         }
 
-        private CartViewModel GetCart() => HttpContext.Session.Get<CartViewModel>(CART_SESSION_KEY) ?? new CartViewModel();
+        private CartViewModel GetCart()
+        {
+            var cart = HttpContext.Session.Get<CartViewModel>(CART_SESSION_KEY) ?? new CartViewModel();
+            HttpContext.Session.Set(CART_SESSION_KEY, cart);
+
+            return cart;
+        }
     }
 }

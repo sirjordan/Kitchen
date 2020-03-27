@@ -6,7 +6,7 @@ namespace Kitchen.Web.Models
     {
         public int Id { get; set; }
 
-        [Display(Name = "Име")]
+        [Display(Name = "Продукт")]
         [Required(ErrorMessage = "Задължително поле")]
         public string Name { get; set; }
 

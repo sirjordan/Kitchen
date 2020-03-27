@@ -17,6 +17,8 @@ namespace Kitchen.Web
 
         public class Settings
         {
+            public const string DataBindDateTimeFormat = "{0:dd.M.yyyy г. H:mm}";
+
             public static bool Develop => bool.Parse(Configuration["Settings:Develop"]);
         }
     }

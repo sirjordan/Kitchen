@@ -15,6 +15,14 @@ namespace Kitchen.Web.Data
 
         public DateTime PurchasedAt { get; set; }
 
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string Phone { get; set; }
+
+        public string Address { get; set; }
+
         public Order()
         {
             Dishes = new HashSet<OrderDishes>();
