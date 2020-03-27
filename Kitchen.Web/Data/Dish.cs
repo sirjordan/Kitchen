@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kitchen.Web.Data
@@ -17,12 +18,19 @@ namespace Kitchen.Web.Data
 
         public int CategoryId { get; set; }
 
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
 
         public string Allergens { get; set; }
 
         public string ImageUrl { get; set; }
 
         public int Weight { get; set; }
+
+        public virtual ICollection<OrderDishes> Orders { get; set; }
+
+        public Dish()
+        {
+            Orders = new HashSet<OrderDishes>();
+        }
     }
 }

@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Kitchen.Web.Data
 {
@@ -13,13 +11,13 @@ namespace Kitchen.Web.Data
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public ICollection<Dish> Items { get; set; }
+        public virtual ICollection<OrderDishes> Dishes { get; set; }
 
         public DateTime PurchasedAt { get; set; }
 
         public Order()
         {
-            Items = new HashSet<Dish>();
+            Dishes = new HashSet<OrderDishes>();
         }
     }
 }

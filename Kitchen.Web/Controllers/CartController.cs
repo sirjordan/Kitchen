@@ -62,9 +62,17 @@ namespace Kitchen.Web.Controllers
 
             var order = new Order()
             {
-                Items = items, //_mapper.ProjectTo<Dish>(cart.Items.AsQueryable()).ToList(),
                 PurchasedAt = DateTime.Now,
             };
+
+            foreach (var i in items)
+            {
+                order.Dishes.Add(new OrderDishes 
+                {
+                    Order = order,
+                    Dish = i
+                });
+            }
 
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
